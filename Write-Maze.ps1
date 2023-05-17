@@ -94,6 +94,9 @@ History:
 01.00 2023-May-17 Scott S. Initial release.
 
 .LINK
+https://en.wikipedia.org/wiki/Maze_generation_algorithm
+
+.LINK
 https://braintumor.org/
 
 .LINK
@@ -117,8 +120,10 @@ Clear-Host;
 $maze = @{};
 
 # Recursively walks the maze
-function Walk-Maze {
-  param(
+function Walk-Maze
+{
+  param
+  (
       [int]$x # cell x-coordinate
     , [int]$y # cell y-coordinate
   )
