@@ -2,37 +2,37 @@
 ## Copyright (c) 2023 TigerPointe Software, LLC
 
 ## Description
-Writes a randomly generated maze to the console.
+Writes a randomly generated maze to the console in PowerShell.
 
 Implements a classic depth-first search algorithm.
 
 A blank grid is produced by repeating the left and top cell content.
 
-  +--
-  :           (defines a 1x1 grid)
+    +--
+    :           (defines a 1x1 grid)
 
-  +--+--+--
-  :  :  :
-  +--+--+--
-  :  :  :     (defines a 3x3 grid)
-  +--+--+--
-  :  :  :
+    +--+--+--
+    :  :  :
+    +--+--+--
+    :  :  :     (defines a 3x3 grid)
+    +--+--+--
+    :  :  :
 
 A terminal column is added on the right to close the rows.
 
 A terminal row is added on the bottom to close the columns.
 
-  +--+
-  :  :        (defines a closed 1x1 grid)
-  +--+
+    +--+
+    :  :        (defines a closed 1x1 grid)
+    +--+
 
-  +--+--+--+
-  :  :  :  :
-  +--+--+--+
-  :  :  :  :  (defines a closed 3x3 grid)
-  +--+--+--+
-  :  :  :  :
-  +--+--+--+
+    +--+--+--+
+    :  :  :  :
+    +--+--+--+
+    :  :  :  :  (defines a closed 3x3 grid)
+    +--+--+--+
+    :  :  :  :
+    +--+--+--+
 
 The depth-first search algorithm is defined as follows:
 
