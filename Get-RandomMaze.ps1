@@ -103,7 +103,7 @@ param ([int]$width = 16, [int]$height = 8, [int]$margin = 0)
 # (commas force values as repeating list elements)
 function Make-Maze
 {
-  param ([int]$w, [int]$h)
+  param ([int]$w, [int]$h, [int]$m)
 
   # Grid of visited flags, ex. 3x3 cells
   #   0001
@@ -207,9 +207,9 @@ function Make-Maze
   $s = '';
   for ($i = 0; $i -le $h; $i++)
   {
-    $s += ' ' * $margin;
+    $s += ' ' * $m;
     $s += ($hor[$i] -join '') + "`n";
-    $s += ' ' * $margin;
+    $s += ' ' * $m;
     $s += ($ver[$i] -join '') + "`n";
   }
   return $s;
@@ -221,5 +221,5 @@ if ($width  -lt 1) { $width  = 1; }
 if ($height -lt 1) { $height = 1; }
 if ($margin -lt 0) { $margin = 0; }
 
-# Make maze for specified width and height
-Make-Maze -w $width -h $height;
+# Make maze for specified width, height and margin
+Make-Maze -w $width -h $height -m $margin;
