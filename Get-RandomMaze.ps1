@@ -216,5 +216,10 @@ function Make-Maze
 
 } # end-function
 
+# Sanity check
+if ($width  -lt 1) { $width  = 1; }
+if ($height -lt 1) { $height = 1; }
+if ($margin -lt 0) { $margin = 0; }
+
 # Make maze for specified width and height
 Make-Maze -w $width -h $height;
