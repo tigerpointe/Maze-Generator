@@ -13,7 +13,8 @@ Implements a recursive depth-search algorithm to generate a maze.
     - Remove the wall between the accepted cell and the chosen neighbor
     - Invoke the procedure recursively for the chosen neighbor
 
-## Sample Maze
+Please consider giving to cancer research.
+
     +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
              |        |           |  |           |  |
     +  +--+  +  +  +  +  +--+--+  +  +  +--+--+--+  +
@@ -31,8 +32,6 @@ Implements a recursive depth-search algorithm to generate a maze.
     +  +  +  +  +--+--+  +--+--+--+  +--+  +  +--+  +
     |     |           |                    |         
     +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-Please consider giving to cancer research.
 
 ## Make a Difference
 If you enjoy this software, please consider donating to one of the following:
