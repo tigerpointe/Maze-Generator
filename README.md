@@ -13,7 +13,7 @@ Implements a recursive depth-search algorithm to generate a maze.
     - Remove the wall between the accepted cell and the chosen neighbor
     - Invoke the procedure recursively for the chosen neighbor
 
-## Sample
+## Sample Maze
     +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
              |        |           |  |           |  |
     +  +--+  +  +  +  +  +--+--+  +  +  +--+--+--+  +
