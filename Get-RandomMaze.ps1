@@ -4,7 +4,7 @@
 Gets a randomly generated maze using PowerShell.
 
 .DESCRIPTION
-Implements a recursive depth-search algorithm to generate a maze.
+Implements a recursive depth-first search algorithm to generate a maze.
 
   - Accept a cell as a parameter (first one can be chosen at random)
   - Mark the accepted cell as visited
