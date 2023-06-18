@@ -40,6 +40,8 @@ These scripts are by far some of the smallest and most easy to understand maze g
 
 The included writer methods output ASCII text for portability.  If you are a developer, you can save the JSON markup and pass it your own custom writer method (for example, one that outputs graphics or Unicode box characters).  These scripts were only intended as simple tools to illustrate complicated concepts.
 
+BONUS SCRIPT:  A sample Unicode box writer module is now included for Python.
+
 In general, the Python script runs faster, but PowerShell allows for much greater levels of recursion.
 
 The original PowerShell script (which only generates strings) is still included in the project for historical purposes.
