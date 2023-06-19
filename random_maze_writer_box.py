@@ -1,7 +1,11 @@
 ﻿#!/usr/bin/env python3
 """ A Python replacement module for writing mazes with Unicode box characters.
 
-IMPORTANT:  Be sure to view using a true Unicode compatible monospace font.
+Copy this module to the same folder as random_maze_solver_json.py
+
+IMPORTANT:  Be sure to view the maze using a true Unicode compatible monospace
+            font.  Some monospace fonts, like Courier New, do not properly
+            support the upper-range Unicode characters.
 
 In the original writer, a "+" connector is used to delimit the grid cells.
 Each segment of a connector can be thought of as having the compass directions
@@ -15,10 +19,10 @@ The walls of the neighbor cells determine whether a particular segment of the
 connector is displayed.  Each compass direction segment can be assigned a
 bitmask value.
 
-N = (x, y - 1).left += 8
-S = (x, y).left     += 4
-W = (x - 1, y).top  += 2
-E = (x, y).top      += 1
+N = (x, y - 1).left += 8  0x1000
+S = (x, y).left     += 4  0x0100
+W = (x - 1, y).top  += 2  0x0010
+E = (x, y).top      += 1  0x0001
 
 The bitmask combinations can now be mapped to Unicode box characters.
 
@@ -46,7 +50,8 @@ A mapping string can be derived by translating the bitmask horizontally.
             0123456789012345
 Squared Box: ╶╴─╷┌┐┬╵└┘┴│├┤┼
 
-Select a connector by using the bitmask as an index into the mapping string.
+Select a connector character by using the bitmask value as an index into the
+mapping string.
 
 History:
 01.00 2023-Jun-19 Scott S. Initial release.
