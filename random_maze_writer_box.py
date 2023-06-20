@@ -1,7 +1,7 @@
 ﻿#!/usr/bin/env python3
 """ A Python replacement module for writing mazes with Unicode box characters.
 
-Copy this module to the same folder as random_maze_solver_json.py
+Copy this module into the same folder as random_maze_solver_json.py
 
 IMPORTANT:  Be sure to view the maze using a true Unicode compatible monospace
             font.  Some monospace fonts, like Courier New, do not properly
@@ -114,13 +114,13 @@ def write_maze_box(data=None):
     data : the JSON maze data
     """
 
+    # Define the bitmask mapping string of box characters
+    box = ' ╶╴─╷┌┐┬╵└┘┴│├┤┼'
+
     # Load the JSON maze data
     grid = json.loads(data)
     width = len(grid[0]) - 1
-    height = len(grid) - 1
-
-    # Define the bitmask mapping string of box characters
-    box = ' ╶╴─╷┌┐┬╵└┘┴│├┤┼'
+    height = len(grid) - 1 
 
     # Remove the entrance and exit walls
     grid[0][0]['left'] = False
