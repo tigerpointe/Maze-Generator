@@ -38,7 +38,7 @@ A total of two new PowerShell and Python scripts were added to generate, solve, 
 
 These scripts are by far some of the smallest and most easy to understand maze generators available.  The updated scripts separate the generator, solver, and writer features into different methods.  A simple JSON string is used as an intermediate data format for communicating between these methods.  Each script can be used as an independent module and does not require an installer.
 
-The included writer methods output ASCII text for portability.  If you are a developer, you can save the JSON markup and pass it your own custom writer method (for example, one that outputs graphics or Unicode box characters).  These scripts were only intended as simple tools to illustrate complicated concepts.
+The included writer methods output ASCII text for portability.  If you are a developer, you can save the JSON markup and pass it to your own custom writer method (for example, one that outputs graphics or Unicode box characters).  These scripts were only intended as simple tools to illustrate complicated concepts.
 
 BONUS SCRIPT:  A sample Unicode box writer module is now included for Python.
 
