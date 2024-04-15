@@ -74,12 +74,12 @@ def get_maze(width=16, height=8):
                 'path': False,
                 'visited': False
             }
-            grid[y][width] = {
-                'top': False,
-                'left': True,
-                'path': False,
-                'visited': True
-            }
+        grid[y][width] = {
+            'top': False,
+            'left': True,
+            'path': False,
+            'visited': True
+        }
     for x in range(width):
         grid[height][x] = {
             'top': True,
