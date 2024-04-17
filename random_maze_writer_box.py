@@ -122,10 +122,6 @@ def write_maze_box(data=None):
     width = len(grid[0]) - 1
     height = len(grid) - 1 
 
-    # Remove the entrance and exit walls
-    grid[0][0]['left'] = False
-    grid[height - 1][width]['left'] = False
-
     # Write the maze as a text string
     s = '\n  '
     c = ' '

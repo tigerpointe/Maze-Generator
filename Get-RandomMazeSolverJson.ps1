@@ -257,6 +257,10 @@ function Set-MazePath
     return $false;
   }
 
+  # Remove the entrance and exit walls
+  $grid[0][0].Left = $false;
+  $grid[$height - 1][$width].Left = $false;
+
   # Reset the visited flags, and then begin testing all of the generated
   # paths, starting from the entrance, continuing until an exit is found
   for ($y = 0; $y -lt $height; $y++)
@@ -283,10 +287,6 @@ function Write-Maze
   $grid   = [object[]](ConvertFrom-Json -InputObject $data);
   $width  = ($grid[0].Length - 1);
   $height = ($grid.Length - 1);
-
-  # Remove the entrance and exit walls
-  $grid[0][0].Left = $false;
-  $grid[$height - 1][$width].Left = $false;
 
   # Write the maze as a text string
   $s = "`n  ";

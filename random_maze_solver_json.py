@@ -184,6 +184,10 @@ def set_maze_path(data=None):
             return True
         return False
 
+    # Remove the entrance and exit walls
+    grid[0][0]['left'] = False
+    grid[height - 1][width]['left'] = False
+    
     # Reset the visited flags, and then begin testing all of the generated
     # paths, starting from the entrance, continuing until an exit is found
     for y in range(height):
@@ -203,10 +207,6 @@ def write_maze(data=None):
     grid = json.loads(data)
     width = len(grid[0]) - 1
     height = len(grid) - 1
-
-    # Remove the entrance and exit walls
-    grid[0][0]['left'] = False
-    grid[height - 1][width]['left'] = False
 
     # Write the maze as a text string
     s = '\n  '
