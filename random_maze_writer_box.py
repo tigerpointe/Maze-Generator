@@ -120,7 +120,7 @@ def write_maze_box(data=None):
     # Load the JSON maze data
     grid = json.loads(data)
     width = len(grid[0]) - 1
-    height = len(grid) - 1 
+    height = len(grid) - 1
 
     # Write the maze as a text string
     s = '\n  '

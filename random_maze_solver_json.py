@@ -187,7 +187,7 @@ def set_maze_path(data=None):
     # Remove the entrance and exit walls
     grid[0][0]['left'] = False
     grid[height - 1][width]['left'] = False
-    
+
     # Reset the visited flags, and then begin testing all of the generated
     # paths, starting from the entrance, continuing until an exit is found
     for y in range(height):
