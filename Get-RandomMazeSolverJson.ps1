@@ -148,6 +148,10 @@ function Get-Maze
     Visited = $true
   }
 
+  # Remove the entrance and exit walls
+  $grid[0][0].Left = $false;
+  $grid[$height - 1][$width].Left = $false;
+
   function Enter-Cell
   # Enters a cell using a recursive depth-first search algorithm:
   # Accept a cell as a parameter
@@ -256,10 +260,6 @@ function Set-MazePath
     }
     return $false;
   }
-
-  # Remove the entrance and exit walls
-  $grid[0][0].Left = $false;
-  $grid[$height - 1][$width].Left = $false;
 
   # Reset the visited flags, and then begin testing all of the generated
   # paths, starting from the entrance, continuing until an exit is found

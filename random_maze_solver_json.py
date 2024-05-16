@@ -94,6 +94,10 @@ def get_maze(width=16, height=8):
         'visited': True
     }
 
+    # Remove the entrance and exit walls
+    grid[0][0]['left'] = False
+    grid[height - 1][width]['left'] = False
+
     def enter_cell(x, y):
         """ Enters a cell using a recursive depth-first search algorithm:
         Accept a cell as a parameter
@@ -183,10 +187,6 @@ def set_maze_path(data=None):
             grid[y][x]['path'] = True
             return True
         return False
-
-    # Remove the entrance and exit walls
-    grid[0][0]['left'] = False
-    grid[height - 1][width]['left'] = False
 
     # Reset the visited flags, and then begin testing all of the generated
     # paths, starting from the entrance, continuing until an exit is found
