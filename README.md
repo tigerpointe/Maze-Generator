@@ -46,6 +46,9 @@ In general, the Python script runs faster, but PowerShell allows for much greate
 
 The original PowerShell script (which only generates strings) is still included in the project for historical purposes.
 
+## Update (2024-May-25)
+BONUS SCRIPT:  A sample interactive game module is now included for Python that imports the core module to generate and write random mazes.
+
 ## Make a Difference
 If you enjoy this software, please consider donating to one of the following:
 
