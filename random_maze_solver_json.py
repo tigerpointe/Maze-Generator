@@ -193,7 +193,7 @@ def set_maze_path(data=None):
     for y in range(height):
         for x in range(width):
             grid[y][x]['visited'] = False
-    test_path(0, 0)
+    _ = test_path(0, 0)
     return json.dumps(grid)
 
 

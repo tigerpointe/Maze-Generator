@@ -66,9 +66,9 @@ import random_maze_solver_json as rmsj
 def clear():
     """Clears the screen, works across all platforms."""
     if (os.name == 'nt'):
-        os.system('cls')   # Microsoft Windows
+        _ = os.system('cls')   # Microsoft Windows
     else:
-        os.system('clear')  # All others (posix)
+        _ = os.system('clear')  # All others (posix)
     print('\n  Press the arrow keys to move, escape to quit.')
 
 
