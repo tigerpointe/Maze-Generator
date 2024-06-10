@@ -5,6 +5,7 @@ Copy this module into the same folder as random_maze_solver_json.py
 
 History:
 01.00 2024-May-25 Scott S. Initial release.
+01.01 2024-Jun-10 Scott S. Display maze solution keypress.
 
 MIT License
 
@@ -64,7 +65,7 @@ import random_maze_solver_json as rmsj
 
 
 def clear():
-    """Clears the screen, works across all platforms."""
+    """ Clears the screen, works across all platforms."""
     if (os.name == 'nt'):
         _ = os.system('cls')  # Microsoft Windows
     else:
@@ -85,9 +86,9 @@ def play(width=16, height=8):
     # Initialize the player's coordinates
     px = 0
     py = 0
+    grid[py][px]['path'] = True
 
     # Show the player's initial position in the maze
-    grid[py][px]['path'] = True
     clear()
     print(rmsj.write_maze(json.dumps(grid)), end='')
 
@@ -140,8 +141,25 @@ def play(width=16, height=8):
             print('File not found:', file, '\n  ', end='')
         return True
 
+    def display_path():
+        """ Displays the solution path."""
+
+        # Clear the current path
+        for y in range(height):
+            for x in range(width):
+                grid[y][x]['path'] = False
+
+        # Set the solution path
+        data = rmsj.set_maze_path(json.dumps(grid))
+
+        # Display the solution path
+        clear()
+        print(rmsj.write_maze(data), end='')
+        print('Maze solution.')
+        return False
+
     def on_press(key):
-        """Handles the keypress event.
+        """ Handles the keypress event.
         PARAMETERS:
         key : the pressed key
         """
@@ -149,12 +167,14 @@ def play(width=16, height=8):
         # Allow the player's coordinates to be updated in the parent scope
         nonlocal px, py
 
-        # Save or reload the game
+        # Save or reload the game, or display the solution path
         if (hasattr(key, 'char')):
             if (key.char == 's'):
-                return save_game()  # return the save status
+                return save_game()  # return the save game status
             elif (key.char == 'r'):
-                return reload_game()  # return the reload status
+                return reload_game()  # return the reload game status
+            elif (key.char == 'd'):
+                return display_path()  # return the display path status
 
         # Clear the player's current position in the maze
         grid[py][px]['path'] = False
@@ -175,9 +195,9 @@ def play(width=16, height=8):
         elif (key == Key.down):
             if (py < (height - 1)) and (not grid[py + 1][px]['top']):
                 py = py + 1  # move down
+        grid[py][px]['path'] = True
 
         # Show the player's updated position in the maze
-        grid[py][px]['path'] = True
         clear()
         print(rmsj.write_maze(json.dumps(grid)), end='')
 
