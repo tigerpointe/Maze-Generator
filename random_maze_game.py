@@ -2,10 +2,11 @@
 """ A Python module for interactively playing randomly generated mazes.
 
 Copy this module into the same folder as random_maze_solver_json.py
+(arrow keys = move, ESC = quit, S = save, R = reload, D = display path)
 
 History:
 01.00 2024-May-25 Scott S. Initial release.
-01.01 2024-Jun-10 Scott S. Display maze solution keypress.
+01.01 2024-Jun-10 Scott S. Display path keypress for maze solution.
 
 MIT License
 
@@ -66,10 +67,10 @@ import random_maze_solver_json as rmsj
 
 def clear():
     """ Clears the screen, works across all platforms."""
-    if (os.name == 'nt'):
+    if os.name == 'nt':
         _ = os.system('cls')  # Microsoft Windows
     else:
-        _ = os.system('clear')  # All others (posix)
+        _ = os.system('clear')  # All others (os.name == 'posix')
     print('\n  Press the arrow keys to move, escape to quit.')
 
 
@@ -84,8 +85,7 @@ def play(width=16, height=8):
     grid = json.loads(rmsj.get_maze(width, height))
 
     # Initialize the player's coordinates
-    px = 0
-    py = 0
+    px, py = 0, 0
     grid[py][px]['path'] = True
 
     # Show the player's initial position in the maze
@@ -112,7 +112,7 @@ def play(width=16, height=8):
 
         # Reload the JSON grid data from a file
         file = os.path.basename(__file__) + '.txt'
-        if (os.path.isfile(file)):
+        if os.path.isfile(file):
 
             # Read the file contents
             f = open(file, 'r')
@@ -122,11 +122,11 @@ def play(width=16, height=8):
             # Set the grid variables (a found path breaks the nested loops)
             width = len(grid[0]) - 1
             height = len(grid) - 1
+            px, py = 0, 0
             for y in range(height):
                 for x in range(width):
-                    if (grid[y][x]['path']):
-                        px = x  # found player's x-coordinate
-                        py = y  # found player's y-coordinate
+                    if grid[y][x]['path']:
+                        px, py = x, y  # restore the player's coordinates
                         break
                 else:
                     continue
@@ -168,31 +168,31 @@ def play(width=16, height=8):
         nonlocal px, py
 
         # Save or reload the game, or display the solution path
-        if (hasattr(key, 'char')):
-            if (key.char == 's'):
+        if hasattr(key, 'char'):
+            if key.char == 's':
                 return save_game()  # return the save game status
-            elif (key.char == 'r'):
+            elif key.char == 'r':
                 return reload_game()  # return the reload game status
-            elif (key.char == 'd'):
+            elif key.char == 'd':
                 return display_path()  # return the display path status
 
         # Clear the player's current position in the maze
         grid[py][px]['path'] = False
 
         # Update the player coordinates based on the pressed key
-        if (key == Key.esc):
+        if key == Key.esc:
             print('Game stopped.')
             return False  # stop playing
-        elif (key == Key.left):
+        elif key == Key.left:
             if (px > 0) and (not grid[py][px]['left']):
                 px = px - 1  # move left
-        elif (key == Key.right):
+        elif key == Key.right:
             if (px < (width - 1) and (not grid[py][px + 1]['left'])):
                 px = px + 1  # move right
-        elif (key == Key.up):
+        elif key == Key.up:
             if (py > 0) and (not grid[py][px]['top']):
                 py = py - 1  # move up
-        elif (key == Key.down):
+        elif key == Key.down:
             if (py < (height - 1)) and (not grid[py + 1][px]['top']):
                 py = py + 1  # move down
         grid[py][px]['path'] = True
