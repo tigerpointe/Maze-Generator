@@ -116,9 +116,15 @@ def play(width=16, height=8):
         if os.path.isfile(file):
 
             # Read the file contents
-            f = open(file, 'r')
-            grid = json.loads(f.read())
-            f.close()
+            try:
+                f = open(file, 'r')
+                try:
+                    grid = json.loads(f.read())
+                finally:
+                    f.close()
+            except:
+                print('Game reload error:', file)
+                return False
 
             # Set the grid variables (a found path breaks the nested loops)
             width = len(grid[0]) - 1
@@ -147,9 +153,15 @@ def play(width=16, height=8):
 
         # Save the JSON grid data to a file
         file = os.path.basename(__file__) + '.txt'
-        f = open(file, 'w')
-        f.write(json.dumps(grid))
-        f.close()
+        try:
+            f = open(file, 'w')
+            try:
+                f.write(json.dumps(grid))
+            finally:
+                f.close()
+        except:
+            print('Game save error:', file)
+            return False
         print('Game saved:', file, '\n  ', end='')
         return True
 
