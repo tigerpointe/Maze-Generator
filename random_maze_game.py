@@ -65,15 +65,6 @@ import os
 import random_maze_solver_json as rmsj
 
 
-def clear():
-    """ Clears the screen, works across all platforms."""
-    if os.name == 'nt':
-        _ = os.system('cls')  # Microsoft Windows
-    else:
-        _ = os.system('clear')  # All others (os.name == 'posix')
-    print('\n  Press the arrow keys to move, escape to quit.')
-
-
 def play(width=16, height=8):
     """ Starts the gameplay.
     Parameters
@@ -88,20 +79,30 @@ def play(width=16, height=8):
     px, py = 0, 0
     grid[py][px]['path'] = True
 
-    # Show the player's initial position in the maze
-    clear()
-    print(rmsj.write_maze(json.dumps(grid)), end='')
+    def clear():
+        """ Clears the screen, works across all platforms."""
+        if os.name == 'nt':
+            _ = os.system('cls')  # Microsoft Windows
+        else:
+            _ = os.system('clear')  # All others (os.name == 'posix')
+        print('\n  Press the arrow keys to move, escape to quit.')
 
-    def save_game():
-        """ Saves the game to a file."""
+    def display_path():
+        """ Displays the solution path."""
 
-        # Save the JSON grid data to a file
-        file = os.path.basename(__file__) + '.txt'
-        f = open(file, 'w')
-        f.write(json.dumps(grid))
-        f.close()
-        print('Game saved:', file, '\n  ', end='')
-        return True
+        # Clear the current path
+        for y in range(height):
+            for x in range(width):
+                grid[y][x]['path'] = False
+
+        # Set the solution path
+        data = rmsj.set_maze_path(json.dumps(grid))
+
+        # Display the solution path
+        clear()
+        print(rmsj.write_maze(data), end='')
+        print('Maze solution.')
+        return False
 
     def reload_game():
         """ Reloads the game from a file."""
@@ -141,22 +142,16 @@ def play(width=16, height=8):
             print('File not found:', file, '\n  ', end='')
         return True
 
-    def display_path():
-        """ Displays the solution path."""
+    def save_game():
+        """ Saves the game to a file."""
 
-        # Clear the current path
-        for y in range(height):
-            for x in range(width):
-                grid[y][x]['path'] = False
-
-        # Set the solution path
-        data = rmsj.set_maze_path(json.dumps(grid))
-
-        # Display the solution path
-        clear()
-        print(rmsj.write_maze(data), end='')
-        print('Maze solution.')
-        return False
+        # Save the JSON grid data to a file
+        file = os.path.basename(__file__) + '.txt'
+        f = open(file, 'w')
+        f.write(json.dumps(grid))
+        f.close()
+        print('Game saved:', file, '\n  ', end='')
+        return True
 
     def on_press(key):
         """ Handles the keypress event.
@@ -169,12 +164,12 @@ def play(width=16, height=8):
 
         # Save or reload the game, or display the solution path
         if hasattr(key, 'char'):
-            if key.char == 's':
-                return save_game()  # return the save game status
+            if key.char == 'd':
+                return display_path()  # return the display path status
             elif key.char == 'r':
                 return reload_game()  # return the reload game status
-            elif key.char == 'd':
-                return display_path()  # return the display path status
+            elif key.char == 's':
+                return save_game()  # return the save game status
 
         # Clear the player's current position in the maze
         grid[py][px]['path'] = False
@@ -206,6 +201,10 @@ def play(width=16, height=8):
             print('CONGRATULATIONS!  You successfully solved the maze.')
             return False  # exit found, stop playing
         return True  # continue playing
+
+    # Show the player's initial position in the maze
+    clear()
+    print(rmsj.write_maze(json.dumps(grid)), end='')
 
     # Listen for keypresses until false is returned
     with Listener(on_press=on_press, suppress=True) as lstn:
