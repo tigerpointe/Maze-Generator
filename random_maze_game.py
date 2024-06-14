@@ -210,7 +210,7 @@ def play(width=16, height=8):
 
         # Determine whether the player has found the exit
         if (px == (width - 1)) and (py == (height - 1)):
-            print('CONGRATULATIONS!  You successfully solved the maze.')
+            print('CONGRATULATIONS!  You\'ve successfully solved the maze.')
             return False  # exit found, stop playing
         return True  # continue playing
 
