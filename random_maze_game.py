@@ -194,7 +194,7 @@ def play(width=16, height=8):
             if (px > 0) and (not grid[py][px]['left']):
                 px = px - 1  # move left
         elif key == Key.right:
-            if (px < (width - 1) and (not grid[py][px + 1]['left'])):
+            if (px < (width - 1)) and (not grid[py][px + 1]['left']):
                 px = px + 1  # move right
         elif key == Key.up:
             if (py > 0) and (not grid[py][px]['top']):
