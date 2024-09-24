@@ -106,7 +106,7 @@ All trailing closures are initialized as "visited" and therefore not walked.
 The first and last cell "tops" are removed to create the entrance and exit.
 The finished maze is returned as a multiline string, indented with spaces.
 
-Sample finished 3x3 random maze returned (and "printed") by this module:
+A sample finished 3x3 random maze returned (and "printed") by this module:
 
   +   +---+---+
   |           |
