@@ -3,7 +3,7 @@
 
 History:
 01.00 2024-Sep-15 Scott S. Initial release.
-01.01 2024-Sep-20 Scott S. Updated comments.
+01.01 2024-Sep-25 Scott S. Updated comments.
 
 MIT License
 
@@ -47,7 +47,7 @@ If you enjoy this software, please do something kind for free.
   |               |               |       |                       |
   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+   +
 
-A 3x3 Walk-through Example of this Module
+An Example 3x3 (Width and Height) Walk-through of this Module
 
 An initial 3x3 "tops" grid of repeating "+---" cells:
 
@@ -70,12 +70,12 @@ An initial 3x3 "visited" grid of repeating "False" cells:
   False False False True
   True  True  True  True  add an extra bottom closure row of "True" values
 
-An alternated initial 3x3 "tops" and "lefts" grid when "joined" together:
+An initial 3x3 alternating "tops" and "lefts" grid when "joined" together:
 
   +---+---+---+           alternating "+" and "|" right closure column
   |   |   |   |
   +---+---+---+
-  |   |   |   |           grid body with alternating "tops" and "lefts" rows
+  |   |   |   |           grid body of alternating "tops" and "lefts" rows
   +---+---+---+
   |   |   |   |
   +---+---+---+           trailing "tops" closure row
@@ -91,18 +91,19 @@ https://en.wikipedia.org/wiki/Maze_generation_algorithm
   - Remove the wall between the accepted cell and the chosen neighbor
   - Recursively call the routine for the chosen neighbor
 
+Notes:
 Every cell is recursively visited one time, allowing for one solution path.
 Neighbors are randomly walked until there are no more unvisited neighbors.
+Bounds checks on the -1/+1 "neighbors" cell coordinates are not necessary.
+An index of -1 for any x or y coordinate references the trailing closure.
+** In Python, a negative index counts from the right instead of the left.
+An overflow of +1 for any x or y coordinate references the trailing closure.
+** Column and row closures are defined at the width and height limits.
+All trailing closures are initialized as "visited" and therefore not walked.
+"max()" returns the bottom-most/right-most shared wall between two cells.
 The shared "tops" of vertically aligned neighbors (same x) are removed.
 The shared "lefts" of horizontally aligned neighbors (same y) are removed.
-"max()" returns the bottom-most/right-most shared wall between two cells.
 After all neighbors have been visited for a chosen cell, backtracking occurs.
-Bounds checks on the -1/+1 neighbor cell coordinates are not necessary.
-An index of -1 for any x or y coordinate references the trailing closure.
-Why?  In Python, a negative index counts from the right instead of the left.
-An overflow of +1 for any x or y coordinate references the trailing closure.
-Why?  Column and row closures are defined at the width and height limits.
-All trailing closures are initialized as "visited" and therefore not walked.
 The first and last cell "tops" are removed to create the entrance and exit.
 The finished maze is returned as a multiline string, indented with spaces.
 
