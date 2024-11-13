@@ -167,7 +167,7 @@ def play(width=16, height=8):
 
     def on_press(key):
         """ Handles the keypress event.
-        PARAMETERS:
+        Parameters
         key : the pressed key
         """
 
